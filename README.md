@@ -1,6 +1,6 @@
 # like-json
 
-![](https://vgy.me/LAGXbY.gif)
+![](https://vgy.me/yB4PBK.gif)
 
 ## Comparison
 ```javascript
