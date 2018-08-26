@@ -1,0 +1,28 @@
+{
+  "name": "like-json",
+  "version": "1.0.0",
+  "description": "Stringify at ultra performance",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuKks/like-json.git"
+  },
+  "author": "Lucas Barrena <lucasbarrena@hotmail.com>",
+  "license": "zlib",
+  "bugs": {
+    "url": "https://github.com/LuKks/like-json/issues"
+  },
+  "homepage": "https://github.com/LuKks/like-json#readme",
+  "keywords": [
+    "like",
+    "json",
+    "stringify",
+    "schema",
+    "ultra",
+    "fast",
+    "performance"
+  ]
+}
