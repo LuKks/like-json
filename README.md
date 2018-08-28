@@ -2,6 +2,9 @@
 
 ![](https://vgy.me/yB4PBK.gif)
 
+## Install
+`$ npm i like-json`
+
 ## Comparison
 ```javascript
 var like = require('like-json');
