@@ -3,86 +3,102 @@
 	See LICENSE for licensing info
 */
 
-'use strict';
+(function() {
+	'use strict';
 
-var like = {};
+	var like = {
+		_json_cache: {}
+	};
 
-var _schemaCache = {};
+	/**/
+	like.json = (schema, options) => {
+		options = options || {};
 
-like.json = (schema, options) => { //do: .parse
-	options = options || {};
-
-	//should do it better based on: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
-
-	function value(t, k) {
-		switch(typeof t) {
-			case 'string': return options.encode ? ('"\' + ' + k + '.replace(/(\\\\|")/g, "\\\\$1") + \'"') : ('"\' + ' + k + ' + \'"');
-			case 'number': return options.finite ? ('\' + (isFinite(' + k + ') ? ' + k + ' : null) + \'') : ('\' + ' + k + ' + \'');
-			case 'boolean': return '\' + ' + k + ' + \'';
-			case 'null': return 'null';
-			case 'symbol': return '""';
-			default: return undefined;
+		function value(t, k) {
+			if(typeof t === 'string' || t instanceof String) return '"\' + ' + k + (options.encode ? '.replace(/(\\\\|")/g, "\\\\$1")' : '') + ' + \'"';
+			if(typeof t === 'number' || t instanceof Number) return '\' + ' + (options.finite ? ('(isFinite(' + k + ') ? ' + k + ' : null)') : k) + ' + \'';
+			if(typeof t === 'boolean' || t instanceof Boolean) return '\' + ' + k + ' + \'';
+			if(typeof t === 'null') return 'null';
+			if(typeof t === 'symbol') return '""';
+			return undefined;
 		}
-	}
 
-	function recursive(base, parent) {
-		let r = Array.isArray(base) ? '[' : '{'; 
+		function recursive(base, parent) {
+			let r = Array.isArray(base) ? '[' : '{'; 
 
-		for(let k in base) {
-			if(Array.isArray(base)) {
-				k = parseInt(k);
-			}
+			for(let k in base) {
+				if(Array.isArray(base)) {
+					k = parseInt(k);
+				}
 
-			let key = !Array.isArray(base) ? '"' + k + '":' : '';
+				let key = !Array.isArray(base) ? '"' + k + '":' : '';
 
-			if(base[k] === null || ['function', 'symbol', 'undefined'].indexOf(typeof base[k]) !== -1) {
-				r += key + 'null' + ',';
-			}
-			else if(base[k] && typeof base[k].toJSON === 'function') {
-				r += key + "\"' + " + 'obj' + parent + (isFinite(k) ? '[' + k + ']' : '.' + k) + ".toJSON() + '\"" + ',';
-			}
-			else if(typeof base[k] === 'object') {
-				r += key + recursive(base[k], (isFinite(k) ? [parent + '[' + k + ']'] : [parent, k]).join('.')) + ',';
-			}
-			else {
-				let v = value(base[k], 'obj' + parent + (isFinite(k) ? '[' + k + ']' : '.' + k));
+				if(base[k] === null) {
+					r += key + 'null,';
+				}
+				else if(['function', 'symbol', 'undefined'].indexOf(typeof base[k]) !== -1) {
+					if(Array.isArray(base) && isFinite(k)) {
+						r += key + 'null,';
+					}
+				}
+				else if(base[k] && typeof base[k].toJSON === 'function') {
+					r += key + "\"' + " + 'o' + parent + (isFinite(k) ? '[' + k + ']' : '.' + k) + ".toJSON() + '\"" + ',';
+				}
+				else if(typeof base[k] === 'object' && [String, Number, Boolean].indexOf(base[k].constructor) === -1) {
+					r += key + recursive(base[k], (isFinite(k) ? [parent + '[' + k + ']'] : [parent, k]).join('.')) + ',';
+				}
+				else {
+					let v = value(base[k], 'o' + parent + (isFinite(k) ? '[' + k + ']' : '.' + k));
 
-				if(v !== undefined) {
-					r += key + v + ',';
+					if(v !== undefined) {
+						r += key + v + ',';
+					}
 				}
 			}
+
+			if(r[r.length - 1] === ',') {
+				r = r.slice(0, -1);
+			}
+
+			return r + (Array.isArray(base) ? ']' : '}');
 		}
 
-		if(r[r.length - 1] === ',') {
-			r = r.slice(0, -1);
+		if(schema === null) {
+			return Function('o', "return 'null';");
 		}
 
-		return r + (Array.isArray(base) ? ']' : '}');
+		if(['function', 'symbol', 'undefined'].indexOf(typeof schema) !== -1) {
+			return Function('o', 'return undefined;');
+		}
+
+		if(schema && typeof schema.toJSON === 'function') {
+			return Function('o', "return '\"' + o.toJSON() + '\"';");
+		}
+
+		if(typeof schema === 'object' && [String, Number, Boolean].indexOf(schema.constructor) === -1) {
+			return Function('o', "return '" + recursive(schema, '') + "';");
+		}
+
+		return Function('o', "return '" + value(schema, 'o') + "';");
 	}
 
-	if(schema === null) {
-		return Function('obj', "return 'null';");
+	/**/
+	like.stringify = function(obj, id, options) {
+		if(!like._json_cache[id]) {
+			like._json_cache[id] = like.json(obj, options);
+		}
+
+		return like._json_cache[id](obj);
 	}
 
-	if(['function', 'symbol', 'undefined'].indexOf(typeof schema) !== -1) {
-		return Function('obj', 'return undefined;');
+	/**/
+	if(typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+		module.exports = like;
 	}
-
-	if(schema && typeof schema.toJSON === 'function') {
-		//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#toJSON()_behavior
-		return Function('obj', "return '\"' + obj.toJSON() + '\"';"); //very simple? should have more behavior 
+	else if(typeof window !== 'undefined') {
+		window.like = like;
 	}
-
-	return Function('obj', "return '" + (typeof schema === 'object' ? recursive(schema, '') : value(schema, 'obj')) + "';");
-}
-
-like.stringify = function(id, obj, options) {
-	if(_schemaCache[id]) {
-		return _schemaCache[id](obj);
+	else {
+		console.log('Unable to export.');
 	}
-	
-	_schemaCache[id] = like.json(obj, options);
-	return like.stringify(id, obj);
-}
-
-module.exports = like;
+})();
