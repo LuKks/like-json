@@ -11,6 +11,8 @@ npm i like-json
 ## Examples
 If you want to start using like-json:
 ```javascript
+let like = require('like-json');
+
 console.log(JSON.stringify({ msg: 'Created.' }));
 //to ->
 console.log(like.stringify({ msg: 'Created.' }, 1)); //where 1 is a unique id for this struct
@@ -18,6 +20,8 @@ console.log(like.stringify({ msg: 'Created.' }, 1)); //where 1 is a unique id fo
 
 After that, can get more performance if you avoid the internal if and function call in .stringify:
 ```javascript
+let like = require('like-json');
+
 //on somewhere
 let stringify = like.json({ msg: '' });
 
