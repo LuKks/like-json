@@ -26,7 +26,7 @@ let like = require('like-json');
 let stringify = like.json({ msg: '' });
 
 //and use it
-console.log(stringify({ msg: 'Created.' }, 1));
+console.log(stringify({ msg: 'Created.' }));
 ```
 
 ## How it works?
