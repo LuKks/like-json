@@ -1,6 +1,6 @@
 # like-json
 
-![](https://vgy.me/CgirYE.png)
+![](https://vgy.me/MsY6dd.png)
 Benchmark it yourself: https://jsperf.com/like-json
 
 ## Install
