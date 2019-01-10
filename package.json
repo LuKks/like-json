@@ -1,7 +1,7 @@
 {
   "name": "like-json",
-  "version": "1.0.6",
-  "description": "Stringify at ultra performance",
+  "version": "1.0.7",
+  "description": "Stringify at perfect performance. +1800%",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
