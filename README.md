@@ -32,7 +32,8 @@ console.log(stringify({ msg: 'Created.' }));
 ## How it works?
 Basically, almost there is no processing, so same than a simple concatenation
 ```javascript
-console.log(stringify.toString()); //see the internal code with the previous example
+//see the internal code with the previous example
+console.log(stringify.toString());
 ```
 
 ## Tests
@@ -51,7 +52,7 @@ let ex = [
   { toJSON: function() { return 'aaa'; } },
 
   //'It\'s ok \1 ay', //this fails because I'm not sure how encode \1, \4, etc properly and optimized way
-  //{ toJSON: function() { return '"aaa"'; } }, //these two fails because toJSON behaviour is very simple
+  //{ toJSON: function() { return '"aaa"'; } }, //these three fails because toJSON behaviour is very simple (only strings)
   //{ toJSON: function() { return '{"a":"b"}'; } },
   //{ toJSON: function() { return 111; } } //'111'
 ];
