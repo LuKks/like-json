@@ -1,6 +1,6 @@
 {
   "name": "like-json",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Stringify at perfect performance. +2090%",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/LuKks/like-json.git"
   },
   "author": "Lucas Barrena <lucasbarrena@hotmail.com>",
-  "license": "zlib",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/LuKks/like-json/issues"
   },
