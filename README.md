@@ -4,8 +4,13 @@
 Benchmark it yourself: https://jsperf.com/likejson
 
 ## Install
+NodeJS:
 ```
 npm i like-json
+```
+Browser:
+```
+<script src="https://unpkg.com/like-json/index.min.js"></script>
 ```
 
 ## Examples
@@ -83,3 +88,6 @@ function check(data, i) {
 }
 
 ```
+
+## License
+Code released under the [MIT License](https://github.com/LuKks/like-json/blob/master/LICENSE).
