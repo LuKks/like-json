@@ -1,7 +1,7 @@
 # like-json
 
 ![](https://vgy.me/MsY6dd.png)
-Benchmark it yourself: https://jsperf.com/like-json/2
+Benchmark it yourself: https://jsperf.com/likejson
 
 ## Install
 ```
