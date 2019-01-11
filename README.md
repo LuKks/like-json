@@ -9,7 +9,7 @@ NodeJS:
 npm i like-json
 ```
 Browser:
-```
+```html
 <script src="https://unpkg.com/like-json/index.min.js"></script>
 ```
 
