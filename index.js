@@ -1,7 +1,7 @@
 /*
-	like-json (https://npmjs.com/package/like-json)
-	Copyright 2019 Lucas Barrena
-	Licensed under MIT (https://github.com/LuKks/like-json)
+ like-json (https://npmjs.com/package/like-json)
+ Copyright 2019 Lucas Barrena
+ Licensed under MIT (https://github.com/LuKks/like-json)
 */
 
 (function() {
