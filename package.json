@@ -1,10 +1,10 @@
 {
   "name": "like-json",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Stringify at perfect performance. +2090%",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,8 @@
     "fast",
     "perfect",
     "performance"
-  ]
+  ],
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
 }
