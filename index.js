@@ -1,24 +1,25 @@
 /*
-	(C) 2018 Lucas Barrena
-	See LICENSE for licensing info
+	like-json (https://npmjs.com/package/like-json)
+	Copyright 2019 Lucas Barrena
+	Licensed under MIT (https://github.com/LuKks/like-json)
 */
 
 (function() {
 	'use strict';
 
-	var like = {
+	let like = {
 		_json_cache: {}
 	};
 
 	/**/
-	like.json = (schema, options) => {
+	like.json = function(schema, options) {
 		options = options || {};
 
 		function value(t, k) {
 			if(typeof t === 'string' || t instanceof String) return '"\' + ' + k + (options.encode ? '.replace(/(\\\\|")/g, "\\\\$1")' : '') + ' + \'"';
 			if(typeof t === 'number' || t instanceof Number) return '\' + ' + (options.finite ? ('(isFinite(' + k + ') ? ' + k + ' : null)') : k) + ' + \'';
 			if(typeof t === 'boolean' || t instanceof Boolean) return '\' + ' + k + ' + \'';
-			if(typeof t === 'null') return 'null';
+			if(t === 'null') return 'null';
 			if(typeof t === 'symbol') return '""';
 			return undefined;
 		}
@@ -28,7 +29,7 @@
 
 			for(let k in base) {
 				if(Array.isArray(base)) {
-					k = parseInt(k);
+					k = parseInt(k, 10);
 				}
 
 				let key = !Array.isArray(base) ? '"' + k + '":' : '';
@@ -84,11 +85,11 @@
 
 	/**/
 	like.stringify = function(obj, id, options) {
-		if(!like._json_cache[id]) {
-			like._json_cache[id] = like.json(obj, options);
+		if(!this._json_cache[id]) {
+			this._json_cache[id] = this.json(obj, options);
 		}
 
-		return like._json_cache[id](obj);
+		return this._json_cache[id](obj);
 	}
 
 	/**/
