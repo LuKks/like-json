@@ -25,7 +25,7 @@ console.log(JSON.stringify({ msg: 'Created.' }));
 console.log(like.stringify({ msg: 'Created.' }, 1)); //where 1 is a unique id for this struct
 ```
 
-After that, can get more performance if you avoid the internal if and function call in .stringify:
+Can get more performance if you avoid the internal check and function call in .stringify:
 ```javascript
 let like = require('like-json');
 
@@ -41,6 +41,12 @@ Basically, almost there is no processing, so same than a simple concatenation
 ```javascript
 //see the internal code with the previous example
 console.log(stringify.toString());
+
+/*
+function anonymous(o) {
+  return '{"msg":"' + o.msg + '"}';
+}
+*/
 ```
 
 ## Tests
