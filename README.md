@@ -4,7 +4,7 @@
 
 Stringify at perfect performance. +2090%
 
-![](https://vgy.me/qNZSmP.png)
+![](https://i.imgur.com/utx06e8.png)
 Benchmark it yourself: https://jsperf.com/likejson
 
 ## Install
