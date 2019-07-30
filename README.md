@@ -1,6 +1,6 @@
 # like-json
 
-[![](https://img.shields.io/maintenance/yes/2019.svg?style=flat-square)](https://github.com/LuKks/like-json) [![](https://img.shields.io/bundlephobia/min/like-json.svg)](https://github.com/LuKks/like-json/blob/master/index.min.js) ![](https://img.shields.io/npm/dt/like-json.svg) ![](https://img.shields.io/npm/v/like-json.svg) ![](https://img.shields.io/github/license/LuKks/like-json.svg) [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/LuKks/like-json)
+![](https://img.shields.io/npm/v/like-json.svg) [![](https://img.shields.io/maintenance/yes/2019.svg?style=flat-square)](https://github.com/LuKks/like-json) [![](https://img.shields.io/bundlephobia/min/like-json.svg)](https://github.com/LuKks/like-json/blob/master/index.min.js) ![](https://img.shields.io/npm/dt/like-json.svg) [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/LuKks/like-json) ![](https://img.shields.io/github/license/LuKks/like-json.svg)
 
 Stringify at perfect performance. +1200%
 
