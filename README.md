@@ -17,6 +17,7 @@ Browser:
 <script src="https://unpkg.com/like-json/index.min.js"></script>
 ```
 
+## Features
 #### Methods
 ```javascript
 like.json(obj: Object|Array|Any, options: Object): Function
