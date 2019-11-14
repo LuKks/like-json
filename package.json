@@ -1,6 +1,6 @@
 {
   "name": "like-json",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "Stringify at perfect performance. +1200%",
   "main": "index.js",
   "scripts": {
