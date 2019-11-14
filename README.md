@@ -69,7 +69,7 @@ If really want to use double quotes then can use options:
 ```javascript
 let options = { encode: true };
 let string1 = JSON.stringify({ msg: 'account "user" created' });
-let string2 = like.stringify({ msg: 'account "user" created' }, 1, options);
+let string2 = like.stringify({ msg: 'account "user" created' }, 2, options);
 console.log(string1 === string2); // true
 ```
 
