@@ -57,7 +57,7 @@ function anonymous (o) {
 }
 ```
 
-Because that there is a conflict with double quotes:\
+Because that there is a conflict with double quotes:
 ```javascript
 { msg: 'account "user" created' } // object
 {"msg":"account \"user\" created"} // JSON.stringify
