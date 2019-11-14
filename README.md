@@ -24,7 +24,8 @@ like.json(obj: Object|Array|Any, options: Object): Function
 like.stringify(obj: Object|Array|Any, uniqueId: Number, options: Object): String
 ```
 
-## json
+## Examples
+#### json
 ```javascript
 const like = require('like-json');
 
@@ -36,7 +37,7 @@ let string2 = stringify({ msg: 'account created' });
 console.log(string1 === string2); // true
 ```
 
-## stringify
+#### stringify
 ```javascript
 const like = require('like-json');
 
