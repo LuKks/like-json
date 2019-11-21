@@ -11,7 +11,6 @@
     _json_cache: {}
   };
 
-  //
   like.json = function (schema, options) {
     options = options || {};
 
@@ -134,7 +133,6 @@
     return Function('o', "return '" + value(schema, 'o') + "';");
   }
 
-  //
   like.stringify = function (obj, id, options) {
     if (!this._json_cache[id]) {
       this._json_cache[id] = this.json(obj, options);
@@ -143,7 +141,6 @@
     return this._json_cache[id](obj);
   }
 
-  //
   if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
     module.exports = like;
   } else if (typeof window !== 'undefined') {
