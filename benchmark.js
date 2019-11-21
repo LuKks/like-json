@@ -38,4 +38,4 @@ suite
   .on('complete', function() {
     console.log('Fastest is ' + this.filter('fastest').map('name'));
   })
-  .run({ async: true });
+  .run({ async: false });
